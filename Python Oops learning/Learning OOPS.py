@@ -34,12 +34,44 @@ class Item:
             )
 
     def __repr__(self):
-        return f"Item ({self.name}, {self.price}, {self.quantity})"
+        return f"{self.__class__.__name__} ({self.name}, {self.price}, {self.quantity})"
 
 
-Item.creating_from_csv()
+class Phone(Item):
+    all = []
+
+    def __init__(self, name, price=0, quantity=0, broken_phones=0):
+        # Validation of values provided
+        # Super is a special keyword which is required to inherit all the values for the parent class which is needed by the child class.
+
+        super().__init__(
+            name, price, quantity
+        )
+        assert broken_phones >= 0, f"broken_phone is less than zero"
+        # Assigning values
+        self.broken_phone = broken_phones
+
+        # Storing all the instances
+        Phone.all.append(self)  # creating an object to store all the instance created
+
+
+class Laptop(Item):
+    all = []
+
+    def __init__(self, name, price=0, quantity=0, size=13):
+        super().__init__(name, price, quantity)
+        self.size = size
+
+        Laptop.all.append(self)
+
+
+phone1 = Phone("Samsung", 25000, -1)
+laptop1 = Laptop("Asus", 100000, 5, size=16)
 
 print(Item.all)
+print(Phone.all)
+print(Laptop.all)
+
 # Documentation
 # Assert is user to create custom exceptions to check statements.
 # Magic attribute (Item.__dict__) is used to print all the attribute that the class or instance contains
