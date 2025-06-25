@@ -1,3 +1,6 @@
+from Items import Item
+
+
 class Phone(Item):
 
     def __init__(self, name, price=0, quantity=0, broken_phones=0):
