@@ -1,7 +1,7 @@
 class Node:
-    def __init__(self, data, next =None):
+    def __init__(self, data, index=None):
         self.data = data
-        self.next = next
+        self.next = index
 
 
 class Linked_list:
@@ -52,7 +52,7 @@ class Linked_list:
             self.insertion_at_end(x)
 
     def remove_at(self, index):
-        if index<0 or index > self.length_of_ll():
+        if index < 0 or index > self.length_of_ll():
             print("The entered index is invalid ")
             return
         if index == 0:
@@ -62,32 +62,34 @@ class Linked_list:
         counter = 0
         itr = self.head
         while itr:
-            if counter == index -1:
+            if counter == index - 1:
                 itr.next = itr.next.next
-            counter +=1
+            counter += 1
             itr = itr.next
+
     def insert_at(self, index, value):
-        if index <0 or index > self.length_of_ll():
+        if index < 0 or index > self.length_of_ll():
             print("The entered index is invalid")
             return
-        if index == 0 :
+        if index == 0:
             self.head = Node(value)
             return
 
         counter = 0
         itr = self.head
         while itr:
-            counter +=1
-            itr= itr.next
+            counter += 1
+            itr = itr.next
             if counter == index - 1:
-                itr.next=Node(value, itr.next )
+                itr.next = Node(value, itr.next)
                 return
+
 
 ll = Linked_list()
 ll.creating_ll_using_array([1, 2, 3, 4, 5, 6, 7])
 ll.print()
 ll.remove_at(6)
 ll.print()
-ll.insert_at(4,86)
+ll.insert_at(4, 86)
 ll.print()
 print(ll.length_of_ll())
